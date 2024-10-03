@@ -195,6 +195,10 @@ ggplot() +
 
 </div>
 
+# 
+
+<div>
+
 # *Question 4:*
 
 ## Critique of a Chart in Earth Observatory's Article on Global Temperatures:
@@ -218,3 +222,7 @@ While the simplicity of this chart is commendable and for the most part its easy
 **Narrative Support:**
 
 I believe that thanks to large variety of data provided and a clear trend in the change in temperature, the chart does an excellent job at highlighting the drastic change in temperature over the this century especially. Additionally, with the explanation in the article about the history of mankind associated with climate change the chart does well to support the narrative, despite being somewhat hard to read towards the more recent years.
+
+</div>
+
+# 

@@ -16,7 +16,7 @@ website:
       - href: Assignment2.qmd
         text: Assignment 2
       - href: Assignment4.qmd
-        text: Assigment4
+        text: Assigment 4
 
 format:
   html:
