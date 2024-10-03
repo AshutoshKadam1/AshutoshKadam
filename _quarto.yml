@@ -9,14 +9,20 @@ website:
         text: Home
       - href: about.qmd
         text: About
+      - href: PrepareForClass.qmd
+        text: Notes and Reviews
       - href: Assignment1.qmd
         text: Assignment 1
+      - href: Assignment2.qmd
+        text: Assignment 2
+      - href: Assignment4.qmd
+        text: Assigment4
 
 format:
   html:
     theme: darkly
     css: styles.css
-    toc: true
+    toc: false
 
 editor: visual
 

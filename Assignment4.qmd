@@ -1,0 +1,15 @@
+---
+title: "Assignment 4"
+---
+
+```{r}
+library(ggplot2)
+data(diamonds)
+ggplot(diamonds, aes(cut)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  geom_text(stat = 'count',aes(label = after_stat(count)), vjust = -0.5, size = 3) +
+  labs(title = "Bar Chart of Diamond Cuts",
+       x = "Cut",
+       y = "Count") +
+  theme_minimal()
+```

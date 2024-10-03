@@ -142,7 +142,7 @@
   {
     "objectID": "Assignment4.html",
     "href": "Assignment4.html",
-    "title": "Ashutosh Kadam",
+    "title": "Assignment 4",
     "section": "",
     "text": "library(ggplot2)\ndata(diamonds)\nggplot(diamonds, aes(cut)) +\n  geom_bar(fill = \"skyblue\", color = \"black\") +\n  geom_text(stat = 'count',aes(label = after_stat(count)), vjust = -0.5, size = 3) +\n  labs(title = \"Bar Chart of Diamond Cuts\",\n       x = \"Cut\",\n       y = \"Count\") +\n  theme_minimal()"
   }
