@@ -7,16 +7,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-        text: About
-      - href: PrepareForClass.qmd
-        text: Notes and Reviews
       - href: Assignment1.qmd
         text: Assignment 1
       - href: Assignment2.qmd
         text: Assignment 2
       - href: Assignment4.qmd
         text: Assigment 4
+      - href: PrepareForClass.qmd
+        text: Notes and Reviews
 
 format:
   html:
