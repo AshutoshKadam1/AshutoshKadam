@@ -1,0 +1,228 @@
+---
+title: "Assignment 1"
+---
+
+<div>
+
+# *Question 1:*
+
+## Data Visualization
+
+## Objective: Identify data or model problems using visualization
+
+## Anscombe (1973) Quartlet
+
+```{r}
+data("anscombe") #Load Anscombe Data
+View(anscombe) #View the data
+summary(anscombe)
+```
+
+## Simple version
+
+```{r}
+plot(anscombe$x1,anscombe$y1)
+summary(anscombe)
+```
+
+# Create four model objects
+
+```{r}
+lm1 <- lm(y1 ~ x1, data = anscombe)
+summary(anscombe)
+lm2 <- lm(y2 ~ x2, data = anscombe)
+summary(anscombe)
+lm3 <- lm(y3 ~ x3, data = anscombe)
+summary(anscombe)
+lm4 <- lm(y4 ~ x4, data = anscombe)
+summary(anscombe)
+plot(anscombe$x1,anscombe$y1)
+abline(coefficients(lm1))
+plot(anscombe$x2,anscombe$y2)
+abline(coefficients(lm2))
+plot(anscombe$x3,anscombe$y3)
+abline(coefficients(lm3))
+plot(anscombe$x4,anscombe$y4)
+abline(coefficients(lm4))
+```
+
+## Fancy Version (per file help)
+
+```{r}
+ff <- y ~ x
+mods <- setNames(as.list(1:4), paste0("lm", 1:4))
+```
+
+# Plot using for loop
+
+```{r}
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  ## or   ff[[2]] <- as.name(paste0("y", i))
+  ##      ff[[3]] <- as.name(paste0("x", i))
+  mods[[i]] <- lmi <- lm(ff, data = anscombe)
+  print(anova(lmi))
+}
+
+sapply(mods, coef)  # Note the use of this function
+lapply(mods, function(fm) coef(summary(fm)))
+
+```
+
+# Preparing for the plots
+
+```{r}
+op <- par(mfrow = c(2, 2), mar = 0.1+c(4,4,1,1), oma =  c(0, 0, 2, 0))
+```
+
+# Plot charts using for loop
+
+```{r}
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  plot(ff, data = anscombe, col = "red", pch = 21, bg = "orange", cex = 1.2,
+       xlim = c(3, 19), ylim = c(3, 13))
+  abline(mods[[i]], col = "blue")
+}
+mtext("Anscombe's 4 Regression data sets", outer = TRUE, cex = 1.5)
+par(op)
+```
+
+</div>
+
+<div>
+
+# *Question 2:*
+
+## Generative Art Examples:
+
+\![Schotter(Gravel) - George Nees, 1968](https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1533751718398-FMHY3BZ2VC9UEBZO4PNS/Gravel.jpg?format=1500w)
+
+\![*Path* - Casey Reas, 2001](https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1535255551787-UZCD15F79KN2B3KP5WJS/Path+-+Casey+Reas%2C+2001?format=1500w)
+
+\![VVRRR - Manolo April, 2018](https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1534210807777-2OCYP6ACY6YE4LHCJHEB/VVRRR%C2%A0-+Manolo+April%2C+2018?format=1500w)
+
+</div>
+
+<div>
+
+# *Question 3:*
+
+## Data Visualization
+
+## Objective: Create graphics with R
+
+## Title: Fall color
+
+# Credit: <https://fronkonstin.com>
+
+# Install packages
+
+```{r}
+install.packages(c("gsubfn", "proto", "tidyverse"), repos = "http://cran.us.r-project.org")
+
+library(gsubfn)
+library(tidyverse)
+```
+
+# Define elements in plant art
+
+# Each image corresponds to a different axiom, rules, angle and depth
+
+# Leaf of Fall
+
+```{r}
+axiom="X"
+rules=list("X"="F-[[X]+X]+F[+FX]-X", "F"="FF")
+angle=22.5
+depth=6
+
+for (i in 1:depth) axiom=gsubfn(".", rules, axiom)
+
+actions=str_extract_all(axiom, "\\d*\\+|\\d*\\-|F|L|R|\\[|\\]|\\|") %>% unlist
+
+status=data.frame(x=numeric(0), y=numeric(0), alfa=numeric(0))
+points=data.frame(x1 = 0, y1 = 0, x2 = NA, y2 = NA, alfa=90, depth=1)
+```
+
+# Generating data
+
+# Note: may take a minute or two
+
+```{r}
+for (action in actions)
+{
+  if (action=="F")
+  {
+    x=points[1, "x1"]+cos(points[1, "alfa"]*(pi/180))
+    y=points[1, "y1"]+sin(points[1, "alfa"]*(pi/180))
+    points[1,"x2"]=x
+    points[1,"y2"]=y
+    data.frame(x1 = x, y1 = y, x2 = NA, y2 = NA,
+               alfa=points[1, "alfa"],
+               depth=points[1,"depth"]) %>% rbind(points)->points
+  }
+  if (action %in% c("+", "-")){
+    alfa=points[1, "alfa"]
+    points[1, "alfa"]=eval(parse(text=paste0("alfa",action, angle)))
+  }
+  if(action=="["){
+    data.frame(x=points[1, "x1"], y=points[1, "y1"], alfa=points[1, "alfa"]) %>%
+      rbind(status) -> status
+    points[1, "depth"]=points[1, "depth"]+1
+  }
+
+  if(action=="]"){
+    depth=points[1, "depth"]
+    points[-1,]->points
+    data.frame(x1=status[1, "x"], y1=status[1, "y"], x2=NA, y2=NA,
+               alfa=status[1, "alfa"],
+               depth=depth-1) %>%
+      rbind(points) -> points
+    status[-1,]->status
+  }
+}
+
+ggplot() +
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2),
+               lineend = "round",
+               color="gold", # Set your own Fall color?
+               data=na.omit(points)) +
+  coord_fixed(ratio = 1) +
+  theme_void() # No grid nor axes
+
+```
+
+</div>
+
+# 
+
+<div>
+
+# *Question 4:*
+
+## Critique of a Chart in Earth Observatory's Article on Global Temperatures:
+
+**Context**:
+
+This chart attempts to show the global temperature trends in the past 100+ years. The purpose is to note the trend of rising temperatures, especially in the last decade, and the relationship between specific industrial and economic milestones with climate change.
+
+**Clarity:**
+
+Due to the large amount of data in present in the x axis(years), it can be heard to pinpoint the global temperature anomaly per year and even note the changes between the year. As you go towards to present, it gets harder to keep track of the temperature changes. However, with the color contrasts such as deeper shades of red, it does well to compensate.
+
+**Accuracy**:
+
+Once again while the accuracy is most likely high given the research and sources provided in the article itself, the lack of labeling make it hard to follow, especially with pinpointing the exact years of the notable historical events such as World War II.
+
+**Design Choices:**
+
+While the simplicity of this chart is commendable and for the most part its easy to read, I believe that multiple charts would allow for information to be conveyed more easily to the readily. Especially since the chart is titled "Last 9 Years Warmest on Record" but is the hardest to read with the the y-axis being on the left. Apart from multiple charts, the easiest way to fix that would be to move the y-axis to the right or adding a legend that allows you to compare the shades of colors to temperature changes.
+
+**Narrative Support:**
+
+I believe that thanks to large variety of data provided and a clear trend in the change in temperature, the chart does an excellent job at highlighting the drastic change in temperature over the this century especially. Additionally, with the explanation in the article about the history of mankind associated with climate change the chart does well to support the narrative, despite being somewhat hard to read towards the more recent years.
+
+</div>
+
+# 
