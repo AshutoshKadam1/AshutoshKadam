@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Ashutosh Kadam",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "This is a Quarto website.\nThis is my website for Data Visualization! Majority of the year was spent building up skills that allowed us to work on one big project. My group worked to figure out if School Mobility had an effect on graduation rates and you can learn more about that with the following materials attached!"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Data Visualization Final Project",
     "section": "",
-    "text": "Hi! My name is Ashutosh Kadam!"
+    "text": "Proposal Presentation"
   },
   {
     "objectID": "Assignment1.html",
@@ -144,6 +144,167 @@
     "href": "Assignment4.html",
     "title": "Assignment 4",
     "section": "",
-    "text": "library(ggplot2)\ndata(diamonds)\nggplot(diamonds, aes(cut)) +\n  geom_bar(fill = \"skyblue\", color = \"black\") +\n  geom_text(stat = 'count',aes(label = after_stat(count)), vjust = -0.5, size = 3) +\n  labs(title = \"Bar Chart of Diamond Cuts\",\n       x = \"Cut\",\n       y = \"Count\") +\n  theme_minimal()"
+    "text": "library(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(ggplot2)\n\n\nrounded &lt;- diamonds %&gt;%\n  group_by(clarity) %&gt;%\n  summarize(\n    avg_size = mean(carat),\n    avg_price_per_carat = mean(price / carat)\n  )\n\nggplot(rounded, aes(x = reorder(clarity, avg_size), y = avg_price_per_carat, fill = clarity, width = avg_size)) +\n  geom_col() +  \n  scale_fill_brewer(palette = \"Set1\") + \n  scale_y_continuous(labels = scales::comma, limits = c(0, 5000)) +\n  theme_minimal() +\n  labs(\n    title = \"Average Diamond Size and Price per Carat by Clarity\",\n    x = \"Average Size (carats)\",\n    y = \"Average Price per Carat ($)\",\n    fill = \"Clarity\"\n  )\n\nWarning: `position_stack()` requires non-overlapping x intervals."
+  },
+  {
+    "objectID": "Assignment3.html",
+    "href": "Assignment3.html",
+    "title": "Assignment 3",
+    "section": "",
+    "text": "# Adjusting the margins for the plot: c(bottom, left, top, right)\npar(mar=c(3, 4.1, 2, 0))  \n\n# First boxplot for Vitamin C (VC) supplement\nboxplot(len ~ dose, data = ToothGrowth,\n        boxwex = 0.25,        # Width of the boxes, set to 0.25\n        at = 1:3 - 0.2,       # Positioning of the boxes slightly to the left\n        subset = supp == \"VC\",# Data filtered for Vitamin C (VC) supplement\n        col = \"white\",        # Box color set to white\n        xlab = \"\",            # No x-axis label for now\n        ylab = \"tooth length\",# Y-axis label indicating the measured outcome\n        ylim = c(0,35))       # Setting the y-axis range from 0 to 35\n\n# Adding x-axis label for Vitamin C doses\nmtext(\"Vitamin C dose (mg)\", side = 1, line = 2.5, cex = 0.8)\n\n# Second boxplot for Orange juice (OJ) supplement, added to the same plot\nboxplot(len ~ dose, data = ToothGrowth, \n        add = TRUE,           # This ensures the new plot is added on top of the existing one\n        boxwex = 0.25,        # Same box width for comparison\n        at = 1:3 + 0.2,       # Positioning the boxes slightly to the right\n        subset = supp == \"OJ\")# Data filtered for Orange Juice (OJ) supplement\n\n# Adding a legend to distinguish between the two supplements\nlegend(1.5, 9,               # Positioning the legend at (1.5, 9) on the plot\n       c(\"Ascorbic acid\", \"Orange juice\"), # Labels for the two supplement types\n       fill = c(\"white\", \"gray\"),          # Corresponding colors: VC is white, OJ is gray\n       bty = \"n\")             # No border around the legend\n\n\n\n\n\n\n\n# Reset margins to the default after the plot\npar(mar=c(5.1, 4.1, 4.1, 2.1))"
+  },
+  {
+    "objectID": "Assignment3.html#comparision-of-regression-models",
+    "href": "Assignment3.html#comparision-of-regression-models",
+    "title": "Assignment 3",
+    "section": "Comparision of regression models:",
+    "text": "Comparision of regression models:\nAnscombe’s quartet consists of four datasets that have nearly identical statistical properties, but they have different distributions and visual patterns.\n\nSummary of the Linear Models:\n\nModel 1 (lm1: y1 ~ x1):\n\nCoefficients:\n\nIntercept: 3.00\nSlope: 0.500\n\nR2: High value, suggests good fit.\nResiduals: The residuals are quite small and evenly spread, indicating a reasonably good model.\n\nModel 2 (lm2: y2 ~ x2):\n\nCoefficients:\n\nIntercept: 3.00\nSlope: 0.500\n\nR2: Similar to model 1, suggests a good fit.\nResiduals: Small residuals, but the fit might not be perfect upon visual inspection.\n\nModel 3 (lm3: y3 ~ x3):\n\nCoefficients:\n\nIntercept: 3.00\nSlope: 0.500\n\nR2: Similar to the previous models.\nResiduals: Small, but when visualized, there may be patterns suggesting potential issues (e.g., curvature).\n\nModel 4 (lm4: y4 ~ x4):\n\nCoefficients:\n\nIntercept: 3.00\nSlope: 0.500\n\nR2: Similar to the others.\nResiduals: Larger compared to the others; the single outlier significantly affects the model.\n\n\n\n\nKey Observations:\n\nAll four models have nearly identical regression equations, yet their underlying data distributions vary.\nFrom the visual inspection of plots, it becomes clear that models 1 and 3 fit reasonably well, but models 2 and 4 require more attention due to apparent non-linearity and an influential outlier, respectively.\nThe linear regression summary alone doesn’t reveal these issues, emphasizing the importance of visualization."
+  },
+  {
+    "objectID": "Assignment3.html#comparison-of-different-ways-to-create-the-plots",
+    "href": "Assignment3.html#comparison-of-different-ways-to-create-the-plots",
+    "title": "Assignment 3",
+    "section": "Comparison of different ways to create the plots:",
+    "text": "Comparison of different ways to create the plots:\n\nOverall, the fancy version enhances visualization with improved aesthetics and standardization, making it more suited for presentation and analysis. The simple version, works well to give a quick overview and for superficial analysis however it is likely to miss finer details. Simple Version:\n\nColor and Line Type:\n\nBasic colors with default settings.\nUses plot() and abline() for linear fit, showing the relationship between the variables and the regression line.\nSimplicity is good for quick analysis, but it lacks customizability and flair in presentation.\n\n\n\n\nFancy Version:\n\nEnhanced Color and Line Types:\n\nUses red points with orange fill (col = \"red\", pch = 21, bg = \"orange\"), creating a more visually appealing chart.\nRegression lines are colored blue for contrast (abline(mods[[i]], col = \"blue\")).\n\nCustomization:\n\nThe xlim and ylim are set to standardize the axis ranges across all plots, making comparisons between the datasets easier.\nThe layout (par(mfrow = c(2, 2)) creates a 2x2 grid to display all four plots together, which is very useful for comparing the datasets side by side.\n\nLabels and Titles:\n\nAn overarching title (mtext()) adds context to the entire figure.\nMargins (mar and oma) are adjusted for better spacing."
+  },
+  {
+    "objectID": "Assignment4.html#chart-1",
+    "href": "Assignment4.html#chart-1",
+    "title": "Assignment 4",
+    "section": "",
+    "text": "library(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(ggplot2)\n\n\nrounded &lt;- diamonds %&gt;%\n  group_by(clarity) %&gt;%\n  summarize(\n    avg_size = mean(carat),\n    avg_price_per_carat = mean(price / carat)\n  )\n\nggplot(rounded, aes(x = reorder(clarity, avg_size), y = avg_price_per_carat, fill = clarity, width = avg_size)) +\n  geom_col() +  \n  scale_fill_brewer(palette = \"Set1\") + \n  scale_y_continuous(labels = scales::comma, limits = c(0, 5000)) +\n  theme_minimal() +\n  labs(\n    title = \"Average Diamond Size and Price per Carat by Clarity\",\n    x = \"Average Size (carats)\",\n    y = \"Average Price per Carat ($)\",\n    fill = \"Clarity\"\n  )\n\nWarning: `position_stack()` requires non-overlapping x intervals."
+  },
+  {
+    "objectID": "Assignment4.html#chart-2",
+    "href": "Assignment4.html#chart-2",
+    "title": "Assignment 4",
+    "section": "Chart 2:",
+    "text": "Chart 2:\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(RColorBrewer)\n\nlibrary(gridExtra)\n\n\nAttaching package: 'gridExtra'\n\n\nThe following object is masked from 'package:dplyr':\n\n    combine\n\n# color palette\n\npalette_cut &lt;- brewer.pal(n = 5, name = \"Dark2\") # 5 colors for 'cut'\n\n\n# Histogram\n\nhist_plot &lt;- ggplot(diamonds, aes(x = price)) +\n  \n  geom_histogram(aes(y = after_stat(density)), bins = 30, fill = \"gray80\", color = \"black\") +\n  \n  stat_function(fun = dnorm, args = list(mean = mean(diamonds$price), sd = sd(diamonds$price)), color = \"blue\", size = 1) +\n  \n  labs(title = \"Histogram of Diamond Prices\", x = \"Price\", y = \"Density\") +\n  \n  theme_minimal(base_size = 5)\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n# Bar Plot\n\nbar_plot &lt;- diamonds %&gt;%\n  \n  group_by(cut) %&gt;%\n  \n  summarise(count = n()) %&gt;%\n  \n  ggplot(aes(x = cut, y = count, fill = cut)) +\n  \n  geom_bar(stat = \"identity\") +\n  \n  labs(title = \"Bar Plot: Count of Diamonds by Cut\", x = \"Cut\", y = \"Count\") +\n  \n  scale_fill_manual(values = palette_cut) +\n  \n  theme_minimal(base_size = 5)\n\n\n# Box Plot\n\nbox_plot &lt;- ggplot(diamonds, aes(x = cut, y = price, fill = cut)) +\n  \n  geom_boxplot() +\n  \n  labs(title = \"Box Plot: Price Distribution by Cut\", x = \"Cut\", y = \"Price\") +\n  \n  scale_fill_manual(values = palette_cut) +\n  \n  theme_minimal(base_size = 5)\n\n\n# Scatter Plot\n\nfacet_scatter &lt;- ggplot(diamonds, aes(x = carat, y = price, color = color)) +\n  \n  geom_point(alpha = 0.5, size = 2) +\n  \n  facet_wrap(~ cut) +\n  \n  labs(title = \"Faceted Scatter Plot: Carat vs Price by Color\", x = \"Carat\", y = \"Price\") +\n  \n  scale_color_brewer(palette = \"Set1\") +\n  \n  theme_minimal(base_size = 5)\n\n\n# Heatmap\n\nheatmap_data &lt;- diamonds %&gt;%\n  \n  group_by(cut, color) %&gt;%\n  \n  summarise(avg_price = mean(price), .groups = \"drop\") # Avoid warning\n\n\nheatmap &lt;- ggplot(heatmap_data, aes(x = cut, y = color, fill = avg_price)) +\n  \n  geom_tile(color = \"white\") +\n  \n  scale_fill_gradient(low = \"lightblue\", high = \"darkblue\") +\n  \n  labs(title = \"Heatmap: Average Price by Cut and Color\", x = \"Cut\", y = \"Color\") +\n  \n  theme_minimal(base_size = 5)\n\n\n# Pie Chart\n\npie_data &lt;- diamonds %&gt;%\n  \n  group_by(cut) %&gt;%\n  \n  summarise(count = n()) %&gt;%\n  \n  mutate(percentage = count / sum(count))\n\n\npie_chart &lt;- ggplot(pie_data, aes(x = \"\", y = percentage, fill = cut)) +\n  \n  geom_bar(stat = \"identity\", width = 1) +\n  \n  coord_polar(theta = \"y\") +\n  \n  labs(title = \"Pie Chart of Diamond Cuts\") +\n  \n  scale_fill_brewer(palette = \"Dark2\") +\n  \n  theme_void(base_size = 5)\n\n\n# Arrange all plots in a 2x3 grid layout\n\ngrid.arrange(\n  hist_plot, bar_plot,\n  box_plot, facet_scatter,\n  heatmap, pie_chart,\n  ncol = 2\n)"
+  },
+  {
+    "objectID": "Assignment4.html#chart-3",
+    "href": "Assignment4.html#chart-3",
+    "title": "Assignment 4",
+    "section": "Chart 3:",
+    "text": "Chart 3:\n\nlibrary(ggplot2)\nlibrary(RColorBrewer)\nlibrary(scales)\n# Define a sequential palette from RColorBrewer package\nblues_palette &lt;- brewer.pal(9, \"Blues\")\ncustom_palette &lt;- blues_palette[5:9] # select particular colors\n\n# Create the horizontal bar chart with facets\nggplot(data = diamonds, aes(x = clarity, fill = cut)) +\n  geom_bar(color = \"black\") +\n  facet_wrap(~ cut, nrow = 1) +\n  scale_y_continuous(labels = label_number(scale = 1/1000, suffix = \"K\")) +\n  coord_flip() +\n  scale_fill_manual(values = custom_palette) +\n  theme_minimal(base_family = \"sans\") +\n  labs(\n    title = \"Number of Diamonds by Clarity Across Cut Levels\",\n    x = \"Clarity\",\n    y = \"Number of Diamonds\",\n    fill = \"Cut\"\n  ) +\n  theme(\n    plot.title = element_text(hjust = 0.5, face = \"bold\", size = 14),\n    axis.text.y = element_text(size = 8),\n    axis.text.x = element_text(size = 8),\n    strip.text = element_text(size = 11),\n    legend.position = \"none\",\n    text = element_text(family = \"sans\")\n  )"
+  },
+  {
+    "objectID": "Assignment4.html#chart-4",
+    "href": "Assignment4.html#chart-4",
+    "title": "Assignment 4",
+    "section": "Chart 4:",
+    "text": "Chart 4:\n\n# Filter the dataset for the required cuts\nfiltered_diamonds &lt;- subset(diamonds, cut %in% c(\"Very Good\", \"Ideal\"))\n\n# Create the plot\n## The key issue was to make the left bars overlap over/on top of the rigt!\nggplot(filtered_diamonds, aes(x = color)) +\n  geom_bar(data = subset(filtered_diamonds, cut == \"Ideal\"), \n           aes(y = after_stat(count), fill = cut), \n           position = position_nudge(x = 0.15), \n           width = 0.5, \n           alpha = 0.7) +  # Right bars (Ideal)\n  geom_bar(data = subset(filtered_diamonds, cut == \"Very Good\"), \n           aes(y = after_stat(count), fill = cut), \n           width = 0.5) +  # Left bars (Very Good) on top\n  scale_y_continuous(labels = scales::unit_format(unit = \"k\", scale = 1e-3)) +  # Format y-axis labels\n  labs(\n    title = \"Number of Diamonds by Color across Selected Cut Quality Levels\",\n    x = \"Color\",\n    y = \"Number of Diamonds\",\n    fill = \"Selected Cut Quality Levels\"\n  ) +\n  scale_fill_manual(values = c(\"Very Good\" = \"#66c2a5\", \"Ideal\" = \"#fc8d62\")) +  # Custom colors\n  theme_minimal(base_family = \"sans\") +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 14, hjust = 0.5),  # Centered, bold, and larger title\n    axis.text.y = element_text(size = 10),  # Adjust y-axis text size if needed\n    legend.position = \"top\"  # Adjust legend position if needed\n  )\n\n\n\n\n\n\n\n\n\nlibrary(ggplot2)\ndata(diamonds)\nggplot(diamonds, aes(cut)) +\n  geom_bar(fill = \"skyblue\", color = \"black\") +\n  geom_text(stat = 'count',aes(label = after_stat(count)), vjust = -0.5, size = 3) +\n  labs(title = \"Bar Chart of Diamond Cuts\",\n       x = \"Cut\",\n       y = \"Count\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "Assignment5.html#using-sample-datasets-create-charts-using-ggplot2-functions",
+    "href": "Assignment5.html#using-sample-datasets-create-charts-using-ggplot2-functions",
+    "title": "Assignment 5",
+    "section": "1. Using Sample Datasets, create charts using ggplot2 functions",
+    "text": "1. Using Sample Datasets, create charts using ggplot2 functions"
+  },
+  {
+    "objectID": "Assignment5.html#export-the-charts-using-different-formats",
+    "href": "Assignment5.html#export-the-charts-using-different-formats",
+    "title": "Assignment 5",
+    "section": "3. Export the charts using different formats:",
+    "text": "3. Export the charts using different formats:"
+  },
+  {
+    "objectID": "DataVizProj.html",
+    "href": "DataVizProj.html",
+    "title": "Data Visualization Final Project Materials",
+    "section": "",
+    "text": "Proposal Presentation"
+  },
+  {
+    "objectID": "DataVizProj.html#project-proposal-presentation",
+    "href": "DataVizProj.html#project-proposal-presentation",
+    "title": "Data Visualization Final Project Materials",
+    "section": "",
+    "text": "Proposal Presentation"
+  },
+  {
+    "objectID": "DataVizProj.html#project-presentation",
+    "href": "DataVizProj.html#project-presentation",
+    "title": "Data Visualization Final Project Materials",
+    "section": "Project Presentation:",
+    "text": "Project Presentation:\nProject Presentation"
+  },
+  {
+    "objectID": "DataVizProj.html#data-visualization",
+    "href": "DataVizProj.html#data-visualization",
+    "title": "Data Visualization Final Project Materials",
+    "section": "Data Visualization",
+    "text": "Data Visualization\nShiny App"
+  },
+  {
+    "objectID": "Project.html",
+    "href": "Project.html",
+    "title": "Data Visualization Final Project Materials",
+    "section": "",
+    "text": "Proposal Presentation"
+  },
+  {
+    "objectID": "Project.html#project-proposal-presentation",
+    "href": "Project.html#project-proposal-presentation",
+    "title": "Data Visualization Final Project Materials",
+    "section": "",
+    "text": "Proposal Presentation"
+  },
+  {
+    "objectID": "Project.html#project-presentation",
+    "href": "Project.html#project-presentation",
+    "title": "Data Visualization Final Project Materials",
+    "section": "Project Presentation:",
+    "text": "Project Presentation:\nProject Presentation"
+  },
+  {
+    "objectID": "Project.html#data-visualization",
+    "href": "Project.html#data-visualization",
+    "title": "Data Visualization Final Project Materials",
+    "section": "Data Visualization",
+    "text": "Data Visualization\nShiny App"
+  },
+  {
+    "objectID": "about.html#project-proposal-presentation",
+    "href": "about.html#project-proposal-presentation",
+    "title": "Data Visualization Final Project",
+    "section": "",
+    "text": "Proposal Presentation"
+  },
+  {
+    "objectID": "about.html#project-presentation",
+    "href": "about.html#project-presentation",
+    "title": "Data Visualization Final Project",
+    "section": "Project Presentation:",
+    "text": "Project Presentation:\nProject Presentation"
+  },
+  {
+    "objectID": "about.html#data-visualization",
+    "href": "about.html#data-visualization",
+    "title": "Data Visualization Final Project",
+    "section": "Data Visualization",
+    "text": "Data Visualization\nShiny App"
+  },
+  {
+    "objectID": "index.html#project-proposal-presentation",
+    "href": "index.html#project-proposal-presentation",
+    "title": "Ashutosh Kadam",
+    "section": "Project Proposal Presentation:",
+    "text": "Project Proposal Presentation:\nProposal Presentation"
+  },
+  {
+    "objectID": "index.html#project-presentation",
+    "href": "index.html#project-presentation",
+    "title": "Ashutosh Kadam",
+    "section": "Project Presentation:",
+    "text": "Project Presentation:\nProject Presentation"
+  },
+  {
+    "objectID": "index.html#data-visualization",
+    "href": "index.html#data-visualization",
+    "title": "Ashutosh Kadam",
+    "section": "Data Visualization",
+    "text": "Data Visualization\nShiny App"
   }
 ]

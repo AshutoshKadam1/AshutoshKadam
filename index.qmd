@@ -4,8 +4,6 @@ title: "Ashutosh Kadam"
 
 This is a Quarto website.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
 This is my website for Data Visualization! Majority of the year was spent building up skills that allowed us to work on one big project. My group worked to figure out if School Mobility had an effect on graduation rates and you can learn more about that with the following materials attached!\
 \
 
