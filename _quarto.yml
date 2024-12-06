@@ -17,8 +17,6 @@ website:
         text: Assignment 4
       - href: Assignment5.qmd
         text: Assignment 5
-      - href: DataVizProj. qmd
-        text: Data Visualization Final Project
       - href: PrepareForClass.qmd
         text: Notes and Reviews
 

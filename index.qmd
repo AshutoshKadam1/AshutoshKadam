@@ -5,3 +5,18 @@ title: "Ashutosh Kadam"
 This is a Quarto website.
 
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+This is my website for Data Visualization! Majority of the year was spent building up skills that allowed us to work on one big project. My group worked to figure out if School Mobility had an effect on graduation rates and you can learn more about that with the following materials attached!\
+\
+
+## Project Proposal Presentation:
+
+[Proposal Presentation](https://jamesnorcross.github.io/ppt01.pdf)
+
+## Project Presentation:
+
+[Project Presentation](https://docs.google.com/presentation/d/1Wp285PEIPRgFM1lUV7XVcntrywMtdMVsvldrCR_j4r0/edit#slide=id.g31ed62eda83_0_325)
+
+## Data Visualization
+
+[Shiny App](https://urlx0z-emily0stern.shinyapps.io/stern_data_vis_final/)

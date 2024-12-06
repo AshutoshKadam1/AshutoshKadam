@@ -1,0 +1,32 @@
+{
+  "index.qmd": {
+    "index.html": "3ce2aa43"
+  },
+  "about.qmd": {
+    "about.html": "64790ecf"
+  },
+  "Assignment1.qmd": {
+    "Assignment1.html": "dbffcdd2"
+  },
+  "PrepareForClass.qmd": {
+    "PrepareForClass.html": "6beddfbf"
+  },
+  "Assignment2.qmd": {
+    "Assignment2.html": "fdc8a8a8"
+  },
+  "Assignment4.qmd": {
+    "Assignment4.html": "5b6b12bd"
+  },
+  "Assignment3.qmd": {
+    "Assignment3.html": "44acc6f0"
+  },
+  "Assignment5.qmd": {
+    "Assignment5.html": "3f5e1d11"
+  },
+  "DataVizProj.qmd": {
+    "DataVizProj.html": "c39b7513"
+  },
+  "Project.qmd": {
+    "Project.html": "53cf3dd0"
+  }
+}
