@@ -1,0 +1,15 @@
+---
+title: "Data Visualization Final Project Materials"
+---
+
+## Project Proposal Presentation:
+
+[Proposal Presentation](https://jamesnorcross.github.io/ppt01.pdf)
+
+## Project Presentation:
+
+[Project Presentation](https://docs.google.com/presentation/d/1Wp285PEIPRgFM1lUV7XVcntrywMtdMVsvldrCR_j4r0/edit#slide=id.g31ed62eda83_0_325)
+
+## Data Visualization
+
+[Shiny App](https://urlx0z-emily0stern.shinyapps.io/stern_data_vis_final/)

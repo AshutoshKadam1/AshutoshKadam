@@ -11,8 +11,14 @@ website:
         text: Assignment 1
       - href: Assignment2.qmd
         text: Assignment 2
+      - href: Assignment3.qmd
+        text: Assignment 3
       - href: Assignment4.qmd
-        text: Assigment 4
+        text: Assignment 4
+      - href: Assignment5.qmd
+        text: Assignment 5
+      - href: DataVizProj. qmd
+        text: Data Visualization Final Project
       - href: PrepareForClass.qmd
         text: Notes and Reviews
 

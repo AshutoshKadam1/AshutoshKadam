@@ -1,0 +1,285 @@
+---
+title: "Assignment 5"
+---
+
+## 1. Using Sample Datasets, create charts using only R graphics functions
+
+# Histogram
+
+```{r}
+hist(cars$speed, 
+     breaks = 10, 
+     col = "skyblue", 
+     main = "Histogram of Car Speeds", 
+     xlab = "Speed (mph)", 
+     ylab = "Frequency",
+     border = "white")
+```
+
+# Bar Chart(Vertical)
+
+```{r}
+# Frequency table for 'speed'
+speed_freq <- table(cars$speed)
+
+# Vertical bar chart
+barplot(speed_freq, 
+        col = "coral", 
+        main = "Frequency of Car Speeds", 
+        xlab = "Speed (mph)", 
+        ylab = "Frequency",
+        border = "white")
+
+```
+
+# Bar Chart(Horizontal)
+
+```{r}
+barplot(speed_freq, 
+        col = "lightgreen", 
+        main = "Frequency of Car Speeds (Horizontal)", 
+        xlab = "Frequency", 
+        ylab = "Speed (mph)",
+        horiz = TRUE,
+        border = "white")
+```
+
+# Pie Chart
+
+```{r}
+cyl_freq <- table(mtcars$cyl)  # Create a frequency table for 'cyl'
+pie(cyl_freq,  
+    col = c("red", "green", "blue", "yellow"),  
+    main = "Distribution of Cylinders")
+
+```
+
+# Box Plot
+
+```{r}
+# Create a boxplot of mpg by number of cylinders in mtcars dataset
+boxplot(mpg ~ cyl, 
+        data = mtcars,  
+        col = c("red", "blue", "yellow"),  
+        main = "MPG by Number of Cylinders",  
+        xlab = "Cylinders",  
+        ylab = "Miles per Gallon") 
+
+```
+
+# Scatterplot
+
+```{r}
+plot(cars$speed, cars$dist, 
+     pch = 19, 
+     col = "darkorange", 
+     main = "Scatterplot of Speed vs. Stopping Distance", 
+     xlab = "Speed (mph)", 
+     ylab = "Stopping Distance (ft)")
+abline(lm(cars$dist ~ cars$speed), col = "blue", lwd = 2)
+```
+
+## 1. Using Sample Datasets, create charts using ggplot2 functions
+
+# Histogram
+
+```{r}
+library(ggplot2)
+ggplot(cars, aes(x = speed)) +
+  geom_histogram(bins = 10, fill = "skyblue", color = "white") +  
+  labs(title = "Histogram of Car Speeds", 
+       x = "Speed (mph)", 
+       y = "Frequency") + 
+  theme_minimal() 
+
+```
+
+# Bar Chart(Vertical)
+
+```{r}
+library(ggplot2)
+speed_freq <- as.data.frame(table(cars$speed))
+colnames(speed_freq) <- c("Speed", "Frequency")
+
+ggplot(speed_freq, aes(x = Speed, y = Frequency)) +
+  geom_bar(stat = "identity", fill = "coral", color = "white") +  
+  labs(title = "Frequency of Car Speeds", 
+       x = "Speed (mph)", 
+       y = "Frequency") +  # Custom labels
+  theme_minimal() +  
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  
+
+```
+
+# Bar Chart(Horizontal)
+
+```{r}
+library(ggplot2)
+speed_freq <- as.data.frame(table(cars$speed))
+colnames(speed_freq) <- c("Speed", "Frequency")
+ggplot(speed_freq, aes(x = Speed, y = Frequency)) +  
+  geom_bar(stat = "identity", fill = "lightgreen", color = "white") +  
+  labs(title = "Frequency of Car Speeds (Horizontal)", 
+       x = "Speed (mph)", 
+       y = "Frequency") +  
+  coord_flip() +  
+  theme_minimal()  
+```
+
+# Pie Chart
+
+```{r}
+library(ggplot2)
+cyl_freq <- as.data.frame(table(mtcars$cyl)) 
+colnames(cyl_freq) <- c("Cylinders", "Frequency")
+ggplot(cyl_freq, aes(x = "", y = Frequency, fill = factor(Cylinders))) + 
+  geom_bar(stat = "identity", width = 1) +  
+  coord_polar(theta = "y") +  
+  labs(title = "Distribution of Cylinders", 
+       fill = "Cylinders") +  
+  scale_fill_manual(values = c("red", "green", "blue", "yellow")) +  
+  theme_void()  
+
+```
+
+# Box Plot
+
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) + 
+  geom_boxplot() + 
+  scale_fill_manual(values = c("red", "blue", "yellow")) +  
+  labs(title = "MPG by Number of Cylinders", 
+       x = "Cylinders", 
+       y = "Miles per Gallon") +  
+  theme_minimal()  
+
+```
+
+# Scatterplot
+
+```{r}
+library(ggplot2)
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = "darkorange", shape = 19) +  
+  geom_smooth(method = "lm", color = "blue", linewidth = 1.5, se = FALSE) +  
+  labs(title = "Scatterplot of Speed vs. Stopping Distance", 
+       x = "Speed (mph)", 
+       y = "Stopping Distance (ft)") +  
+  theme_minimal()  
+
+
+```
+
+## 3. Export the charts using different formats:
+
+# .PDF
+
+```{r}
+
+pdf("histogram_mpg.pdf") 
+
+# Create the histogram
+library(ggplot2)
+ggplot(cars, aes(x = speed)) +
+  geom_histogram(bins = 10, fill = "skyblue", color = "white") +  
+  labs(title = "Histogram of Car Speeds", 
+       x = "Speed (mph)", 
+       y = "Frequency") + 
+  theme_minimal()  
+
+dev.off() 
+
+```
+
+# .JPG
+
+```{r}
+library(ggplot2)
+speed_freq <- as.data.frame(table(cars$speed))
+colnames(speed_freq) <- c("Speed", "Frequency")
+jpeg("C:/Users/Ashu/Documents/Data Visualization/AshutoshKadam/vertical_bar_speed.jpg", width = 800, height = 600)
+print(
+  ggplot(speed_freq, aes(x = Speed, y = Frequency)) +
+    geom_bar(stat = "identity", fill = "coral", color = "white") +  
+    labs(title = "Frequency of Car Speeds", 
+         x = "Speed (mph)", 
+         y = "Frequency") +  # Custom labels
+    theme_minimal() +  
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+)
+dev.off()
+
+```
+
+# .SVG
+
+```{r}
+library(ggplot2)
+speed_freq <- as.data.frame(table(cars$speed))
+colnames(speed_freq) <- c("Speed", "Frequency")
+svg("C:/Users/Ashu/Documents/Data Visualization/AshutoshKadam/horizontal_bar_speed.svg", width = 800, height = 600)
+print(
+  ggplot(speed_freq, aes(x = Speed, y = Frequency)) +  
+  geom_bar(stat = "identity", fill = "lightgreen", color = "white") +  
+  labs(title = "Frequency of Car Speeds (Horizontal)", 
+       x = "Speed (mph)", 
+       y = "Frequency") +  
+  coord_flip() +  
+  theme_minimal()
+)
+dev.off()
+```
+
+# .TIFF
+
+```{r}
+library(ggplot2)
+cyl_freq <- as.data.frame(table(mtcars$cyl)) 
+colnames(cyl_freq) <- c("Cylinders", "Frequency")
+tiff("C:/Users/Ashu/Documents/Data Visualization/AshutoshKadam/pie_chart.tiff", width = 800, height = 600)
+print(
+  ggplot(cyl_freq, aes(x = "", y = Frequency, fill = factor(Cylinders))) + 
+  geom_bar(stat = "identity", width = 1) +  
+  coord_polar(theta = "y") +  
+  labs(title = "Distribution of Cylinders", 
+       fill = "Cylinders") +  
+  scale_fill_manual(values = c("red", "green", "blue", "yellow")) +  
+  theme_void()  
+ )
+dev.off()
+```
+
+# .BMP
+
+```{r}
+library(ggplot2)
+bmp("C:/Users/Ashu/Documents/Data Visualization/AshutoshKadam/box_plot.bmp", width = 800, height = 600)
+print(
+  ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) + 
+  geom_boxplot() + 
+  scale_fill_manual(values = c("red", "blue", "yellow")) +  
+  labs(title = "MPG by Number of Cylinders", 
+       x = "Cylinders", 
+       y = "Miles per Gallon") +  
+  theme_minimal()
+)
+dev.off()
+```
+
+# .PNG
+
+```{r}
+library(ggplot2)
+png("C:/Users/Ashu/Documents/Data Visualization/AshutoshKadam/scatter_plot.png", width = 800, height = 600)
+print(
+  ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = "darkorange", shape = 19) +  
+  geom_smooth(method = "lm", color = "blue", linewidth = 1.5, se = FALSE) +  
+  labs(title = "Scatterplot of Speed vs. Stopping Distance", 
+       x = "Speed (mph)", 
+       y = "Stopping Distance (ft)") +  
+  theme_minimal()
+)
+dev.off()
+```

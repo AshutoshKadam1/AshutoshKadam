@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ashutosh Kadam - About</title>
+<title>Ashutosh Kadam - Assignment 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -101,20 +135,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Assignment 2</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Assignment3.html"> 
+    <a class="nav-link active" href="./Assignment3.html" aria-current="page"> 
 <span class="menu-text">Assignment 3</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./Assignment4.html"> 
 <span class="menu-text">Assigment 4</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Assignment5.html"> 
-<span class="menu-text">Assignment 5</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./DataVizProj. qmd"> 
-<span class="menu-text">Data Visualization Final Project</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./PrepareForClass.html"> 
@@ -137,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Assignment 3</h1>
 </div>
 
 
@@ -154,9 +180,180 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Hi! My name is Ashutosh Kadam!</p>
+<section id="a-rerun-of-murrell01.r-boxplot-with-documentation" class="level1">
+<h1>1. A Rerun of murrell01.R Boxplot with documentation</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusting the margins for the plot: c(bottom, left, top, right)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="fl">4.1</span>, <span class="dv">2</span>, <span class="dv">0</span>))  </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># First boxplot for Vitamin C (VC) supplement</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(len <span class="sc">~</span> dose, <span class="at">data =</span> ToothGrowth,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.25</span>,        <span class="co"># Width of the boxes, set to 0.25</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">-</span> <span class="fl">0.2</span>,       <span class="co"># Positioning of the boxes slightly to the left</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">subset =</span> supp <span class="sc">==</span> <span class="st">"VC"</span>,<span class="co"># Data filtered for Vitamin C (VC) supplement</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"white"</span>,        <span class="co"># Box color set to white</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">""</span>,            <span class="co"># No x-axis label for now</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"tooth length"</span>,<span class="co"># Y-axis label indicating the measured outcome</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">35</span>))       <span class="co"># Setting the y-axis range from 0 to 35</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding x-axis label for Vitamin C doses</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Vitamin C dose (mg)"</span>, <span class="at">side =</span> <span class="dv">1</span>, <span class="at">line =</span> <span class="fl">2.5</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Second boxplot for Orange juice (OJ) supplement, added to the same plot</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(len <span class="sc">~</span> dose, <span class="at">data =</span> ToothGrowth, </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">add =</span> <span class="cn">TRUE</span>,           <span class="co"># This ensures the new plot is added on top of the existing one</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.25</span>,        <span class="co"># Same box width for comparison</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">+</span> <span class="fl">0.2</span>,       <span class="co"># Positioning the boxes slightly to the right</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">subset =</span> supp <span class="sc">==</span> <span class="st">"OJ"</span>)<span class="co"># Data filtered for Orange Juice (OJ) supplement</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a legend to distinguish between the two supplements</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="fl">1.5</span>, <span class="dv">9</span>,               <span class="co"># Positioning the legend at (1.5, 9) on the plot</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="st">"Ascorbic acid"</span>, <span class="st">"Orange juice"</span>), <span class="co"># Labels for the two supplement types</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"gray"</span>),          <span class="co"># Corresponding colors: VC is white, OJ is gray</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"n"</span>)             <span class="co"># No border around the legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Assignment3_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset margins to the default after the plot</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">4.1</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-rerun-of-anscombe01.r" class="level1">
+<h1>2. A Rerun of anscombe01.R</h1>
+<section id="comparision-of-regression-models" class="level2">
+<h2 class="anchored" data-anchor-id="comparision-of-regression-models">Comparision of regression models:</h2>
+<p>Anscombe’s quartet consists of four datasets that have nearly identical statistical properties, but they have different distributions and visual patterns.</p>
+<section id="summary-of-the-linear-models" class="level4">
+<h4 class="anchored" data-anchor-id="summary-of-the-linear-models">Summary of the Linear Models:</h4>
+<ul>
+<li><p><strong>Model 1 (lm1: y1 ~ x1)</strong>:</p>
+<ul>
+<li><p>Coefficients:</p>
+<ul>
+<li><p>Intercept: 3.00</p></li>
+<li><p>Slope: 0.500</p></li>
+</ul></li>
+<li><p>R2: High value, suggests good fit.</p></li>
+<li><p>Residuals: The residuals are quite small and evenly spread, indicating a reasonably good model.</p></li>
+</ul></li>
+<li><p><strong>Model 2 (lm2: y2 ~ x2)</strong>:</p>
+<ul>
+<li><p>Coefficients:</p>
+<ul>
+<li><p>Intercept: 3.00</p></li>
+<li><p>Slope: 0.500</p></li>
+</ul></li>
+<li><p>R2: Similar to model 1, suggests a good fit.</p></li>
+<li><p>Residuals: Small residuals, but the fit might not be perfect upon visual inspection.</p></li>
+</ul></li>
+<li><p><strong>Model 3 (lm3: y3 ~ x3)</strong>:</p>
+<ul>
+<li><p>Coefficients:</p>
+<ul>
+<li><p>Intercept: 3.00</p></li>
+<li><p>Slope: 0.500</p></li>
+</ul></li>
+<li><p>R2: Similar to the previous models.</p></li>
+<li><p>Residuals: Small, but when visualized, there may be patterns suggesting potential issues (e.g., curvature).</p></li>
+</ul></li>
+<li><p><strong>Model 4 (lm4: y4 ~ x4)</strong>:</p>
+<ul>
+<li><p>Coefficients:</p>
+<ul>
+<li><p>Intercept: 3.00</p></li>
+<li><p>Slope: 0.500</p></li>
+</ul></li>
+<li><p>R2: Similar to the others.</p></li>
+<li><p>Residuals: Larger compared to the others; the single outlier significantly affects the model.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="key-observations" class="level3">
+<h3 class="anchored" data-anchor-id="key-observations">Key Observations:</h3>
+<ul>
+<li><p>All four models have nearly identical regression equations, yet their underlying data distributions vary.</p></li>
+<li><p>From the visual inspection of plots, it becomes clear that models 1 and 3 fit reasonably well, but models 2 and 4 require more attention due to apparent non-linearity and an influential outlier, respectively.</p></li>
+<li><p>The linear regression summary alone doesn’t reveal these issues, emphasizing the importance of visualization.</p></li>
+</ul>
+</section>
+</section>
+<section id="comparison-of-different-ways-to-create-the-plots" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-different-ways-to-create-the-plots">Comparison of different ways to create the plots:</h2>
+<section id="overall-the-fancy-version-enhances-visualization-with-improved-aesthetics-and-standardization-making-it-more-suited-for-presentation-and-analysis.-the-simple-version-works-well-to-give-a-quick-overview-and-for-superficial-analysis-however-it-is-likely-to-miss-finer-details.-simple-version" class="level4">
+<h4 class="anchored" data-anchor-id="overall-the-fancy-version-enhances-visualization-with-improved-aesthetics-and-standardization-making-it-more-suited-for-presentation-and-analysis.-the-simple-version-works-well-to-give-a-quick-overview-and-for-superficial-analysis-however-it-is-likely-to-miss-finer-details.-simple-version">Overall, the fancy version enhances visualization with improved aesthetics and standardization, making it more suited for presentation and analysis. The simple version, works well to give a quick overview and for superficial analysis however it is likely to miss finer details. Simple Version:</h4>
+<ul>
+<li><p><strong>Color and Line Type</strong>:</p>
+<ul>
+<li><p>Basic colors with default settings.</p></li>
+<li><p>Uses <code>plot()</code> and <code>abline()</code> for linear fit, showing the relationship between the variables and the regression line.</p></li>
+<li><p>Simplicity is good for quick analysis, but it lacks customizability and flair in presentation.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="fancy-version" class="level4">
+<h4 class="anchored" data-anchor-id="fancy-version">Fancy Version:</h4>
+<ul>
+<li><p><strong>Enhanced Color and Line Types</strong>:</p>
+<ul>
+<li><p>Uses red points with orange fill (<code>col = "red", pch = 21, bg = "orange"</code>), creating a more visually appealing chart.</p></li>
+<li><p>Regression lines are colored blue for contrast (<code>abline(mods[[i]], col = "blue")</code>).</p></li>
+</ul></li>
+<li><p><strong>Customization</strong>:</p>
+<ul>
+<li><p>The <code>xlim</code> and <code>ylim</code> are set to standardize the axis ranges across all plots, making comparisons between the datasets easier.</p></li>
+<li><p>The layout (<code>par(mfrow = c(2, 2)</code>) creates a 2x2 grid to display all four plots together, which is very useful for comparing the datasets side by side.</p></li>
+</ul></li>
+<li><p><strong>Labels and Titles</strong>:</p>
+<ul>
+<li><p>An overarching title (<code>mtext()</code>) adds context to the entire figure.</p></li>
+<li><p>Margins (<code>mar</code> and <code>oma</code>) are adjusted for better spacing.</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="fine-tuning-charts" class="level1">
+<h1>3. Fine Tuning Charts</h1>
+<p>a.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1, <span class="at">family=</span><span class="st">"serif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Assignment3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>b.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Assignment3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>c.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1, <span class="at">pch=</span><span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Assignment3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
